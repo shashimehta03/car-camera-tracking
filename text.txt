@@ -1,0 +1,21 @@
+Correct Wiring (for Uploading Code via FTDI)
+ESP32-CAM Pin	FTDI Programmer Pin	Note
+U0R (RX0)	    TX (FTDI)	Cross connection
+U0T (TX0)	    RX (FTDI)	Cross connection
+GND	GND (FTDI)	Common ground
+5V	5V (FTDI)	ESP32-CAM needs 5V input
+IO0	GND (FTDI)	Required only during upload
+
+⚙️ Upload Steps
+
+Connect as above (IO0 → GND).
+In VS Code/PlatformIO run:
+pio run --target upload
+If you see Connecting..., press RESET (or power cycle) once.
+After successful upload:
+Remove IO0 → GND connection.
+Press RESET again → ESP32-CAM will run your program.
+
+to monitor
+pio device monitor -b
+pio device monitor -b 115200
